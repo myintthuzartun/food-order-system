@@ -1,31 +1,29 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Foodie - Food Ordering System</title>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Food Ordering System</title>
 
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
 
-    <!-- ================= HEADER ================= -->
-    <header class="header">
+    <!-- HEADER -->
+    <header>
 
         <div class="logo">
-            🍴 <span>Foodie</span>
+            🍴 Foodie
         </div>
 
-        <nav class="nav">
-            <a href="#home">Home</a>
-            <a href="#menu">Menu</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-        </nav>
-
-        <button class="cart-btn" onclick="openCart()">
+        <button onclick="openCart()">
             🛒 Cart
             <span id="cart-count">0</span>
         </button>
@@ -33,386 +31,214 @@
     </header>
 
 
-    <!-- ================= HERO ================= -->
-    <section class="hero" id="home">
+    <!-- HERO -->
+    <section class="hero">
 
-        <div class="hero-content">
-
-            <span class="hero-small-title">
-                Delicious Food
-            </span>
+        <div>
 
             <h1>
-                Your Favorite Food,
-                <span>Delivered Fast.</span>
+                Delicious Food
+                <span>Delivered Fast</span>
             </h1>
 
             <p>
-                Order delicious meals from your favorite restaurant
-                and enjoy fresh food at your doorstep.
+                Order your favorite food easily.
             </p>
 
-            <a href="#menu" class="hero-btn">
-                Order Now →
+            <a href="#menu">
+                Order Now
             </a>
 
         </div>
 
-        <div class="hero-image">
+        <div class="hero-food">
             🍔
         </div>
 
     </section>
 
 
-    <!-- ================= MENU ================= -->
-    <section class="menu-section" id="menu">
+    <!-- MENU -->
+    <section id="menu">
 
-        <div class="section-title">
+        <h2>Our Menu</h2>
 
-            <span>OUR MENU</span>
-
-            <h2>
-                Explore Our Delicious Foods
-            </h2>
-
-            <p>
-                Choose your favorite food and add it to your cart.
-            </p>
-
-        </div>
+        <p class="subtitle">
+            Choose your favorite food
+        </p>
 
 
-        <!-- Search -->
-        <div class="search-box">
-
-            <input
-                type="text"
-                id="search-input"
-                placeholder="Search food..."
-                onkeyup="searchFood()"
-            >
-
-            🔍
-
-        </div>
+        <!-- SEARCH -->
+        <input
+            type="text"
+            id="search-input"
+            placeholder="Search food..."
+            onkeyup="searchFood()"
+        >
 
 
-        <!-- Categories -->
+        <!-- CATEGORY -->
         <div class="categories">
 
-            <button
-                class="category-btn active"
-                onclick="filterCategory('all', this)">
+            <button onclick="filterFood('all')">
                 All
             </button>
 
-            <button
-                class="category-btn"
-                onclick="filterCategory('burger', this)">
+            <button onclick="filterFood('burger')">
                 🍔 Burger
             </button>
 
-            <button
-                class="category-btn"
-                onclick="filterCategory('pizza', this)">
+            <button onclick="filterFood('pizza')">
                 🍕 Pizza
             </button>
 
-            <button
-                class="category-btn"
-                onclick="filterCategory('chicken', this)">
+            <button onclick="filterFood('chicken')">
                 🍗 Chicken
             </button>
 
-            <button
-                class="category-btn"
-                onclick="filterCategory('drink', this)">
-                🥤 Drinks
+            <button onclick="filterFood('drink')">
+                🥤 Drink
             </button>
 
         </div>
 
 
-        <!-- Food Cards -->
-        <div class="food-grid" id="food-grid">
+        <!-- FOOD -->
+        <div class="food-grid">
 
-            <!-- Burger -->
-            <div class="food-card" data-category="burger">
+
+            <!-- FOOD 1 -->
+            <div class="food-card"
+                 data-category="burger">
 
                 <div class="food-image">
                     🍔
                 </div>
 
-                <div class="food-info">
+                <h3>
+                    Classic Burger
+                </h3>
 
-                    <span class="food-category">
-                        Burger
-                    </span>
+                <p>
+                    Delicious beef burger
+                </p>
 
-                    <h3>Classic Burger</h3>
+                <strong>
+                    $6.99
+                </strong>
 
-                    <p>
-                        Beef patty, cheese, lettuce and tomato.
-                    </p>
+                <button
+                    onclick="addToCart(
+                        'Classic Burger',
+                        6.99,
+                        '🍔'
+                    )">
 
-                    <div class="food-bottom">
+                    Add to Cart
 
-                        <strong>$6.99</strong>
-
-                        <button
-                            onclick="addToCart('Classic Burger', 6.99, '🍔')">
-                            + Add
-                        </button>
-
-                    </div>
-
-                </div>
+                </button>
 
             </div>
 
 
-            <!-- Cheeseburger -->
-            <div class="food-card" data-category="burger">
-
-                <div class="food-image">
-                    🧀🍔
-                </div>
-
-                <div class="food-info">
-
-                    <span class="food-category">
-                        Burger
-                    </span>
-
-                    <h3>Cheese Burger</h3>
-
-                    <p>
-                        Juicy beef burger with melted cheese.
-                    </p>
-
-                    <div class="food-bottom">
-
-                        <strong>$7.99</strong>
-
-                        <button
-                            onclick="addToCart('Cheese Burger', 7.99, '🧀🍔')">
-                            + Add
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- Pizza -->
-            <div class="food-card" data-category="pizza">
+            <!-- FOOD 2 -->
+            <div class="food-card"
+                 data-category="pizza">
 
                 <div class="food-image">
                     🍕
                 </div>
 
-                <div class="food-info">
+                <h3>
+                    Cheese Pizza
+                </h3>
 
-                    <span class="food-category">
-                        Pizza
-                    </span>
+                <p>
+                    Fresh cheese pizza
+                </p>
 
-                    <h3>Margherita Pizza</h3>
+                <strong>
+                    $9.99
+                </strong>
 
-                    <p>
-                        Fresh tomato, mozzarella and basil.
-                    </p>
+                <button
+                    onclick="addToCart(
+                        'Cheese Pizza',
+                        9.99,
+                        '🍕'
+                    )">
 
-                    <div class="food-bottom">
+                    Add to Cart
 
-                        <strong>$9.99</strong>
-
-                        <button
-                            onclick="addToCart('Margherita Pizza', 9.99, '🍕')">
-                            + Add
-                        </button>
-
-                    </div>
-
-                </div>
+                </button>
 
             </div>
 
 
-            <!-- Chicken Pizza -->
-            <div class="food-card" data-category="pizza">
-
-                <div class="food-image">
-                    🍕🍗
-                </div>
-
-                <div class="food-info">
-
-                    <span class="food-category">
-                        Pizza
-                    </span>
-
-                    <h3>Chicken Pizza</h3>
-
-                    <p>
-                        Chicken, mozzarella and special sauce.
-                    </p>
-
-                    <div class="food-bottom">
-
-                        <strong>$11.99</strong>
-
-                        <button
-                            onclick="addToCart('Chicken Pizza', 11.99, '🍕🍗')">
-                            + Add
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- Fried Chicken -->
-            <div class="food-card" data-category="chicken">
+            <!-- FOOD 3 -->
+            <div class="food-card"
+                 data-category="chicken">
 
                 <div class="food-image">
                     🍗
                 </div>
 
-                <div class="food-info">
+                <h3>
+                    Fried Chicken
+                </h3>
 
-                    <span class="food-category">
-                        Chicken
-                    </span>
+                <p>
+                    Crispy fried chicken
+                </p>
 
-                    <h3>Fried Chicken</h3>
+                <strong>
+                    $8.99
+                </strong>
 
-                    <p>
-                        Crispy fried chicken with special seasoning.
-                    </p>
+                <button
+                    onclick="addToCart(
+                        'Fried Chicken',
+                        8.99,
+                        '🍗'
+                    )">
 
-                    <div class="food-bottom">
+                    Add to Cart
 
-                        <strong>$8.99</strong>
-
-                        <button
-                            onclick="addToCart('Fried Chicken', 8.99, '🍗')">
-                            + Add
-                        </button>
-
-                    </div>
-
-                </div>
+                </button>
 
             </div>
 
 
-            <!-- Chicken Wings -->
-            <div class="food-card" data-category="chicken">
-
-                <div class="food-image">
-                    🍗🔥
-                </div>
-
-                <div class="food-info">
-
-                    <span class="food-category">
-                        Chicken
-                    </span>
-
-                    <h3>Chicken Wings</h3>
-
-                    <p>
-                        Spicy crispy chicken wings.
-                    </p>
-
-                    <div class="food-bottom">
-
-                        <strong>$7.49</strong>
-
-                        <button
-                            onclick="addToCart('Chicken Wings', 7.49, '🍗🔥')">
-                            + Add
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- Cola -->
-            <div class="food-card" data-category="drink">
+            <!-- FOOD 4 -->
+            <div class="food-card"
+                 data-category="drink">
 
                 <div class="food-image">
                     🥤
                 </div>
 
-                <div class="food-info">
+                <h3>
+                    Soft Drink
+                </h3>
 
-                    <span class="food-category">
-                        Drink
-                    </span>
+                <p>
+                    Cold soft drink
+                </p>
 
-                    <h3>Soft Drink</h3>
+                <strong>
+                    $2.49
+                </strong>
 
-                    <p>
-                        Cold and refreshing soft drink.
-                    </p>
+                <button
+                    onclick="addToCart(
+                        'Soft Drink',
+                        2.49,
+                        '🥤'
+                    )">
 
-                    <div class="food-bottom">
+                    Add to Cart
 
-                        <strong>$2.49</strong>
-
-                        <button
-                            onclick="addToCart('Soft Drink', 2.49, '🥤')">
-                            + Add
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- Juice -->
-            <div class="food-card" data-category="drink">
-
-                <div class="food-image">
-                    🧃
-                </div>
-
-                <div class="food-info">
-
-                    <span class="food-category">
-                        Drink
-                    </span>
-
-                    <h3>Fresh Juice</h3>
-
-                    <p>
-                        Fresh fruit juice.
-                    </p>
-
-                    <div class="food-bottom">
-
-                        <strong>$3.49</strong>
-
-                        <button
-                            onclick="addToCart('Fresh Juice', 3.49, '🧃')">
-                            + Add
-                        </button>
-
-                    </div>
-
-                </div>
+                </button>
 
             </div>
 
@@ -421,73 +247,22 @@
     </section>
 
 
-    <!-- ================= ABOUT ================= -->
-    <section class="about" id="about">
+    <!-- CART OVERLAY -->
 
-        <div>
-            <span>WHY CHOOSE US?</span>
-
-            <h2>
-                Fresh Food & Fast Delivery
-            </h2>
-
-            <p>
-                We provide delicious food prepared with fresh
-                ingredients and delivered quickly to your door.
-            </p>
-        </div>
-
-        <div class="features">
-
-            <div>
-                <span>🍳</span>
-                <h3>Fresh Food</h3>
-                <p>Fresh ingredients every day.</p>
-            </div>
-
-            <div>
-                <span>🚴</span>
-                <h3>Fast Delivery</h3>
-                <p>Quick delivery to your location.</p>
-            </div>
-
-            <div>
-                <span>⭐</span>
-                <h3>Best Quality</h3>
-                <p>High quality food and service.</p>
-            </div>
-
-        </div>
-
-    </section>
+    <div id="cart-overlay"
+         onclick="closeCart()">
+    </div>
 
 
-    <!-- ================= CONTACT ================= -->
-    <section class="contact" id="contact">
+    <!-- CART -->
 
-        <h2>Contact Us</h2>
-
-        <p>
-            Have a question? Contact our support team.
-        </p>
-
-        <p>
-            📞 +95 9 123 456 789
-            &nbsp;&nbsp;
-            ✉️ info@foodie.com
-        </p>
-
-    </section>
-
-
-    <!-- ================= CART SIDEBAR ================= -->
-    <div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
-
-    <aside class="cart-sidebar" id="cart-sidebar">
+    <div id="cart-sidebar">
 
         <div class="cart-header">
 
-            <h2>🛒 Your Cart</h2>
+            <h2>
+                🛒 Your Cart
+            </h2>
 
             <button onclick="closeCart()">
                 ✕
@@ -496,44 +271,41 @@
         </div>
 
 
-        <div id="cart-items" class="cart-items">
+        <div id="cart-items">
 
-            <div class="empty-cart">
+            <p class="empty-cart">
                 Your cart is empty.
-            </div>
+            </p>
 
         </div>
 
 
-        <div class="cart-footer">
+        <div class="cart-bottom">
 
-            <div class="subtotal">
-
-                <span>Subtotal</span>
-
-                <strong id="cart-total">
+            <h3>
+                Total:
+                <span id="cart-total">
                     $0.00
-                </strong>
-
-            </div>
+                </span>
+            </h3>
 
             <button
                 class="checkout-btn"
-                onclick="placeOrder()">
-                Place Order
+                onclick="goToCheckout()">
+
+                Checkout
+
             </button>
 
         </div>
 
-    </aside>
+    </div>
 
 
-    <!-- ================= FOOTER ================= -->
     <footer>
 
         <p>
-            © 2026 Foodie Food Ordering System.
-            All Rights Reserved.
+            © 2026 Foodie Food Ordering System
         </p>
 
     </footer>
@@ -542,5 +314,6 @@
     <script src="script.js"></script>
 
 </body>
-</html>
 
+</html>
+```

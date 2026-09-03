@@ -1,13 +1,8 @@
-// ========================================
-// FOOD ORDERING SYSTEM
-// ========================================
-
 let cart = [];
 
-
-// ========================================
+// ===============================
 // ADD TO CART
-// ========================================
+// ===============================
 
 function addToCart(name, price, image) {
 
@@ -16,161 +11,153 @@ function addToCart(name, price, image) {
     );
 
     if (existingItem) {
+
         existingItem.quantity++;
+
     } else {
+
         cart.push({
             name: name,
             price: price,
             image: image,
             quantity: 1
         });
+
     }
 
     updateCart();
+
     openCart();
 }
 
 
-// ========================================
+// ===============================
 // UPDATE CART
-// ========================================
+// ===============================
 
 function updateCart() {
 
-    const cartItems = document.getElementById("cart-items");
-    const cartCount = document.getElementById("cart-count");
-    const cartTotal = document.getElementById("cart-total");
+    const cartItems =
+        document.getElementById("cart-items");
 
-    // Check HTML elements
+    const cartCount =
+        document.getElementById("cart-count");
+
+    const cartTotal =
+        document.getElementById("cart-total");
+
+
+    // Safety check
     if (!cartItems || !cartCount || !cartTotal) {
-        console.error("Cart elements not found!");
         return;
     }
 
-    // Clear cart
+
     cartItems.innerHTML = "";
 
-    let total = 0;
-    let totalQuantity = 0;
-
-
-    // ========================================
-    // EMPTY CART
-    // ========================================
 
     if (cart.length === 0) {
 
         cartItems.innerHTML = `
-            <div class="empty-cart">
+            <p class="empty-cart">
                 Your cart is empty.
-            </div>
+            </p>
         `;
 
         cartCount.textContent = "0";
+
         cartTotal.textContent = "$0.00";
 
         return;
     }
 
 
-    // ========================================
-    // DISPLAY CART ITEMS
-    // ========================================
-
-    cart.forEach((item, index) => {
-
-        total += item.price * item.quantity;
-        totalQuantity += item.quantity;
+    let total = 0;
+    let quantity = 0;
 
 
-        const cartItem = document.createElement("div");
+    cart.forEach(function(item, index) {
 
-        cartItem.className = "cart-item";
+        total +=
+            item.price * item.quantity;
+
+        quantity += item.quantity;
 
 
-        cartItem.innerHTML = `
-            <div class="cart-item-image">
-                ${item.image}
-            </div>
+        cartItems.innerHTML += `
 
-            <div class="cart-item-info">
+            <div class="cart-item">
 
-                <h4>
-                    ${item.name}
-                </h4>
+                <div class="cart-item-image">
+                    ${item.image}
+                </div>
 
-                <p>
-                    $${item.price.toFixed(2)}
-                </p>
+                <div class="cart-item-info">
 
-                <div class="quantity">
+                    <h4>
+                        ${item.name}
+                    </h4>
 
-                    <button
-                        onclick="decreaseQuantity(${index})">
-                        −
-                    </button>
+                    <p>
+                        $${item.price.toFixed(2)}
+                    </p>
 
-                    <span>
-                        ${item.quantity}
-                    </span>
+                    <div class="quantity">
 
-                    <button
-                        onclick="increaseQuantity(${index})">
-                        +
-                    </button>
+                        <button
+                            onclick="decreaseQuantity(${index})">
+                            −
+                        </button>
 
-                    <button
-                        class="remove-btn"
-                        onclick="removeFromCart(${index})">
-                        Remove
-                    </button>
+                        <span>
+                            ${item.quantity}
+                        </span>
+
+                        <button
+                            onclick="increaseQuantity(${index})">
+                            +
+                        </button>
+
+                        <button
+                            class="remove-btn"
+                            onclick="removeFromCart(${index})">
+                            Remove
+                        </button>
+
+                    </div>
 
                 </div>
 
             </div>
+
         `;
-
-
-        cartItems.appendChild(cartItem);
-
     });
 
 
-    // ========================================
-    // UPDATE TOTAL
-    // ========================================
-
-    cartCount.textContent = totalQuantity;
+    cartCount.textContent = quantity;
 
     cartTotal.textContent =
         "$" + total.toFixed(2);
 }
 
 
-// ========================================
+// ===============================
 // INCREASE QUANTITY
-// ========================================
+// ===============================
 
 function increaseQuantity(index) {
 
-    if (cart[index]) {
+    cart[index].quantity++;
 
-        cart[index].quantity++;
-
-        updateCart();
-    }
+    updateCart();
 }
 
 
-// ========================================
+// ===============================
 // DECREASE QUANTITY
-// ========================================
+// ===============================
 
 function decreaseQuantity(index) {
-
-    if (!cart[index]) {
-        return;
-    }
 
     if (cart[index].quantity > 1) {
 
@@ -179,21 +166,18 @@ function decreaseQuantity(index) {
     } else {
 
         cart.splice(index, 1);
+
     }
 
     updateCart();
 }
 
 
-// ========================================
+// ===============================
 // REMOVE ITEM
-// ========================================
+// ===============================
 
 function removeFromCart(index) {
-
-    if (!cart[index]) {
-        return;
-    }
 
     cart.splice(index, 1);
 
@@ -201,9 +185,9 @@ function removeFromCart(index) {
 }
 
 
-// ========================================
+// ===============================
 // OPEN CART
-// ========================================
+// ===============================
 
 function openCart() {
 
@@ -224,9 +208,9 @@ function openCart() {
 }
 
 
-// ========================================
+// ===============================
 // CLOSE CART
-// ========================================
+// ===============================
 
 function closeCart() {
 
@@ -247,170 +231,113 @@ function closeCart() {
 }
 
 
-// ========================================
-// CATEGORY FILTER
-// ========================================
+// ===============================
+// FILTER FOOD
+// ===============================
 
-function filterCategory(category, button) {
+function filterFood(category) {
 
-    const cards =
+    const foods =
         document.querySelectorAll(".food-card");
 
-    const buttons =
-        document.querySelectorAll(".category-btn");
 
+    foods.forEach(function(food) {
 
-    // Remove active class
-    buttons.forEach(btn => {
-        btn.classList.remove("active");
-    });
-
-
-    // Add active class
-    if (button) {
-        button.classList.add("active");
-    }
-
-
-    // Filter food
-    cards.forEach(card => {
-
-        const cardCategory =
-            card.getAttribute("data-category");
+        const foodCategory =
+            food.getAttribute("data-category");
 
 
         if (
             category === "all" ||
-            cardCategory === category
+            foodCategory === category
         ) {
 
-            card.style.display = "block";
+            food.style.display = "block";
 
         } else {
 
-            card.style.display = "none";
+            food.style.display = "none";
+
         }
 
     });
 }
 
 
-// ========================================
+// ===============================
 // SEARCH FOOD
-// ========================================
+// ===============================
 
 function searchFood() {
 
-    const searchInput =
+    const input =
         document.getElementById("search-input");
 
 
-    if (!searchInput) {
+    if (!input) {
         return;
     }
 
 
     const search =
-        searchInput.value
-            .toLowerCase()
-            .trim();
+        input.value.toLowerCase();
 
 
-    const cards =
+    const foods =
         document.querySelectorAll(".food-card");
 
 
-    cards.forEach(card => {
+    foods.forEach(function(food) {
 
-        const titleElement =
-            card.querySelector("h3");
-
-        const descriptionElement =
-            card.querySelector(".food-info p");
-
-
-        const foodName =
-            titleElement
-                ? titleElement.textContent.toLowerCase()
-                : "";
+        const name =
+            food.querySelector("h3")
+                .textContent
+                .toLowerCase();
 
 
-        const description =
-            descriptionElement
-                ? descriptionElement.textContent.toLowerCase()
-                : "";
+        if (name.includes(search)) {
 
-
-        if (
-            foodName.includes(search) ||
-            description.includes(search)
-        ) {
-
-            card.style.display = "block";
+            food.style.display = "block";
 
         } else {
 
-            card.style.display = "none";
+            food.style.display = "none";
+
         }
 
     });
 }
 
 
-// ========================================
-// PLACE ORDER
-// ========================================
+// ===============================
+// GO TO CHECKOUT
+// ===============================
 
-function placeOrder() {
+function goToCheckout() {
 
-    // Check empty cart
+    // Check cart
     if (cart.length === 0) {
 
-        alert(
-            "Your cart is empty. Please add some food first."
-        );
+        alert("Your cart is empty!");
 
         return;
     }
 
 
-    // Calculate total
-    let total = 0;
-
-
-    cart.forEach(item => {
-
-        total += item.price * item.quantity;
-
-    });
-
-
-    // Order success
-    alert(
-        "Order placed successfully!\n\n" +
-        "Total: $" + total.toFixed(2)
+    // Save cart
+    localStorage.setItem(
+        "foodieCart",
+        JSON.stringify(cart)
     );
 
 
-    // Clear cart
-    cart = [];
-
-
-    // Update cart
-    updateCart();
-
-
-    // Close cart
-    closeCart();
+    // Go checkout page
+    window.location.href = "checkout.html";
 }
 
 
-// ========================================
+// ===============================
 // INITIALIZE
-// ========================================
+// ===============================
 
-document.addEventListener("DOMContentLoaded", function () {
-
-    updateCart();
-
-});
+updateCart();
