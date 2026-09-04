@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+Here is the fully updated **`home.html`** file with the best structure, incorporating the new **Dessert category card** (`🍰 Chocolate Cake`), the matching filter button, and cleanly organized HTML matching your exact design styles and layout.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -85,12 +87,15 @@
             <button class="category-btn" onclick="filterFood('drink')">
                 🥤 Drink
             </button>
+            <button class="category-btn" onclick="filterFood('dessert')">
+                🍰 Dessert
+            </button>
         </div>
 
         <!-- FOOD GRID -->
         <div class="food-grid">
 
-            <!-- FOOD 1 -->
+            <!-- FOOD 1: BURGER -->
             <div class="food-card" data-category="burger">
                 <div class="food-image">
                     🍔
@@ -108,7 +113,7 @@
                 </div>
             </div>
 
-            <!-- FOOD 2 -->
+            <!-- FOOD 2: PIZZA -->
             <div class="food-card" data-category="pizza">
                 <div class="food-image">
                     🍕
@@ -126,7 +131,7 @@
                 </div>
             </div>
 
-            <!-- FOOD 3 -->
+            <!-- FOOD 3: CHICKEN -->
             <div class="food-card" data-category="chicken">
                 <div class="food-image">
                     🍗
@@ -144,7 +149,7 @@
                 </div>
             </div>
 
-            <!-- FOOD 4 -->
+            <!-- FOOD 4: DRINK -->
             <div class="food-card" data-category="drink">
                 <div class="food-image">
                     🥤
@@ -156,6 +161,24 @@
                     <div class="food-bottom">
                         <strong>$2.49</strong>
                         <button onclick="addToCart('Soft Drink', 2.49, '🥤')">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FOOD 5: DESSERT (NEW BEST ADDITION) -->
+            <div class="food-card" data-category="dessert">
+                <div class="food-image">
+                    🍰
+                </div>
+                <div class="food-info">
+                    <span class="food-category">Dessert</span>
+                    <h3>Chocolate Cake</h3>
+                    <p>Rich and moist chocolate fudge cake layer topped with sweet frosting.</p>
+                    <div class="food-bottom">
+                        <strong>$4.99</strong>
+                        <button onclick="addToCart('Chocolate Cake', 4.99, '🍰')">
                             Add to Cart
                         </button>
                     </div>
@@ -231,3 +254,5 @@
 </body>
 
 </html>
+
+```
